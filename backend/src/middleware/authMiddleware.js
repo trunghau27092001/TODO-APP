@@ -10,9 +10,10 @@ export const protect = asyncHandler(async (req,res,next) =>{
         }
         
         const token = req.headers.authorization?.split(' ')[1]
+        
         //Decoded token
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
-
+        
         //findUser bằng id đã gán trước đó (bằng email cũng được)
         //select('-password') bỏ response password
         req.user = await User.findById(decoded.id).select('-password')

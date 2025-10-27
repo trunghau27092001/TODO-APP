@@ -2,9 +2,7 @@ import React from 'react'
 import TaskEmpty from './TaskEmpty'
 import TaskCard from './TaskCard'
 
-const TaskList = () => {
-  let filter = 'all'
-  const filteredTasks = []
+const TaskList = ({filteredTasks, filter, dateQuery}) => {
 
   if(!filteredTasks || filteredTasks.length === 0 )
   {
@@ -17,7 +15,8 @@ const TaskList = () => {
           <TaskCard 
             key={task._id? task._id: index}
             task = {task}
-            index = {index }
+            index = {index}
+            dateQuery ={dateQuery}
           />
         ))
       }

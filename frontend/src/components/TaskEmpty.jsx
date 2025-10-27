@@ -15,9 +15,9 @@ const TaskEmpty = ({filter}) => {
                     {
                        filter === "active"
                         ? "Không có task đang làm"
-                        : filter === "completed"
+                        : filter === "complete"
                         ? "Chưa có task hoàn thành"
-                        : filter === "canceled"
+                        : filter === "cancel"
                         ? "Không có task đã hủy"
                         : "Không có task"
                     }
@@ -25,7 +25,7 @@ const TaskEmpty = ({filter}) => {
                         {
                             filter === "all"
                                 ? "Thêm task"
-                                : `Chuyển sang trạng thái "Tất cả" để thấy toàn bộ nhiệm vụ${
+                                : `Chuyển sang trạng thái "Tất cả" để thấy toàn bộ nhiệm vụ ${
                                     filter ==='active'? "đã hoàn thành" : "đang làm"
                                 }`
                         }

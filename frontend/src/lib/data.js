@@ -8,11 +8,27 @@ export const FilterType =[
     label: "Đang làm",
   },
   {
-    value: "completed",
+    value: "complete",
     label: "Đã hoàn thành",
-  },
-  {
-    value: "canceled",
-    label: "Đã hủy",
   }
 ] 
+
+export const options =[
+  {
+    value: "all",
+    label: "Tất cả",
+  },
+  {
+    value: "day",
+    label: "Hôm nay",
+  },
+  {
+    value: "week",
+    label: "Tuần này",
+  },
+  {
+    value: "month",
+    label: "Tháng này",
+  }
+] 
+export const visibleTaskLimit = 5

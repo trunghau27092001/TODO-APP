@@ -20,35 +20,34 @@ import {
 } from "./ui/popover"
 
 
-const StatsAndFilter = ({completedTaskCount = 0, activeTaskCount = 0, cancelTaskCount = 0, filter = 'all'}) => {
+const StatsAndFilter = ({completedTaskCount = 0, activeTaskCount = 0, filter = 'all', setFilter}) => {
   const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState(filter)
   
   return (
-    <div className="flex flex-col items-start justify-between gap-4 sm:flex-row">
+    <div className="flex flex-col items-start justify-between gap-4 mr-3 ml-3 sm:flex-row">
       <div className="flex gap-3 size-8">
         <Badge
-          variant="secondary"
-          className="bg-white/50 text-accent-foreground border-info/20"
+          variant="custom"
+          className="bg-white/50 text-primary border-info/20"
         >
           {activeTaskCount} {FilterType.find((framework) => framework.value === 'active')?.label}
         </Badge>
 
         <Badge
-          variant="secondary"
-          className="bg-white/50 text-accent-foreground border-info/20"
+          variant="custom"
+          className="bg-white/50 text-primary border-info/20"
         >
-          {completedTaskCount} {FilterType.find((framework) => framework.value === 'completed')?.label}
+          {completedTaskCount} {FilterType.find((framework) => framework.value === 'complete')?.label}
 
         </Badge>
 
-        <Badge
-          variant="secondary"
-          className="bg-white/50 text-accent-foreground border-info/20"
+        {/* <Badge
+          variant="custom"
+          className="bg-white/50 text-primary border-info/20"
         >
-          {cancelTaskCount} {FilterType.find((framework) => framework.value === 'canceled')?.label}
+          {cancelTaskCount} {FilterType.find((framework) => framework.value === 'cancel')?.label}
 
-        </Badge>
+        </Badge> */}
       </div>
       <div className="flex flex-col gap-2 sm:flex-rowv text-transparent bg-primary bg-clip-text">
         <Popover open={open} onOpenChange={setOpen}>
@@ -59,10 +58,10 @@ const StatsAndFilter = ({completedTaskCount = 0, activeTaskCount = 0, cancelTask
               aria-expanded={open}
               className="w-[145px] justify-between"
             >
-              {value ? (
+              {filter ? (
                 <span className="flex items-center gap-2">
                   <Filter className="w-4 h-4" />
-                  {FilterType.find((framework) => framework.value === value)?.label}
+                  {FilterType.find((framework) => framework.value === filter)?.label}
                 </span>
               ) : (
                 "Select Filter ..."
@@ -80,15 +79,16 @@ const StatsAndFilter = ({completedTaskCount = 0, activeTaskCount = 0, cancelTask
                       key={framework.value}
                       value={framework.value}
                       onSelect={(currentValue) => {
-                        setValue(currentValue === value ? value : currentValue)
+                        setFilter(currentValue === filter ? filter : currentValue)
                         setOpen(false)
                       }}
+                      
                     >
                       {framework.label}
                       <Check
                         className={cn(
                           "ml-auto",
-                          value === framework.value ? "opacity-100" : "opacity-0"
+                          filter === framework.value ? "opacity-100" : "opacity-0"
                         )}
                       />
                     </CommandItem>
